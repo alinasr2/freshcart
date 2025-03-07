@@ -1,0 +1,63 @@
+<section class="dark:bg-gray-900 my-5">
+    <div class="flex flex-col items-center justify-center px-6 mx-auto  lg:py-0">
+        <div class="w-full bg-white rounded-lg shadow-xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8 border-green-500 border rounded">
+                <h1 class="text-xl text-center text-green-600 font-bold leading-tight tracking-tight md:text-2xl dark:text-white">
+                    Login Now
+                </h1>
+                <form class="space-y-4 md:space-y-6" (ngSubmit)="submitForm()" [formGroup]="loginForm">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                        <input formControlName="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-600 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400" placeholder="name@company.com" required="">
+                        @if (loginForm.get("email")?.errors && loginForm.get("email")?.touched) {
+                            @if (loginForm.get("email")?.getError("email")) {
+                            <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                Enter valid email
+                            </p>
+                            }
+                            @else if (loginForm.get("email")?.getError("required")) {
+                                <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                    email is required
+                                </p>
+                            }    
+                        }
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input formControlName="password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-600 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400" required="">
+                        @if (loginForm.get("password")?.errors && loginForm.get("password")?.touched) {
+                            @if (loginForm.get("password")?.getError("pattern")) {
+                            <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                Enter valid password
+                            </p>
+                            }
+                            @else if (loginForm.get("password")?.getError("required")) {
+                                <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                    password is required
+                                </p>
+                            }    
+                        }
+                    </div>
+                    <button type="submit" class="w-full btn-main text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-400">
+                        SignIn
+                        @if (isLoading) {
+                            <span><i class="fas fa-spin fa-spinner"></i></span> 
+                        }
+                    </button>
+                    @if(msgError && !msgSuccess ){
+                    <p class="bg-red-200 text-red-600 py-3 px-4 rounded " > {{msgError}} </p>
+                    }
+                    @if(msgSuccess){
+                        <p class="bg-green-200 text-green-600 py-3 px-4 rounded " > Account login success </p>
+                    }
+                    <p class=" dark:text-gray-400 text-green-500" role="button" routerLink="/forgotPassword">
+                        Forgot Password
+                    </p>
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        Not have an account? <a role="button" routerLink="/register" class="font-medium text-green-500 hover:underline dark:text-green-400">Register here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

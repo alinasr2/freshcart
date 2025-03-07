@@ -1,0 +1,107 @@
+<section class="dark:bg-gray-900 my-5">
+    <div class="flex flex-col items-center justify-center px-6 mx-auto  lg:py-0">
+        <div class="w-full bg-white rounded-lg shadow-xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8 border-green-500 border rounded">
+                <h1 class="text-xl text-center text-green-600 font-bold leading-tight tracking-tight md:text-2xl dark:text-white">
+                    Create an account
+                </h1>
+                <form class="space-y-4 md:space-y-6" (ngSubmit)="submitForm()" [formGroup]="registerForm">
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
+                        <input formControlName="name" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-600 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400" placeholder="username" required="">
+                        @if (registerForm.get("name")?.errors && registerForm.get("name")?.touched) {
+                            @if (registerForm.get("name")?.getError("maxlength")) {
+                            <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                name max length : 20
+                            </p>
+                            }
+                            @else if (registerForm.get("name")?.getError("required")) {
+                                <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                    name is required
+                                </p>
+                            }    
+                            @else if (registerForm.get("name")?.getError("minlength")) {
+                                <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                    name min length : 3
+                                </p>
+                            }
+                        }
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                        <input formControlName="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-600 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400" placeholder="name@company.com" required="">
+                        @if (registerForm.get("email")?.errors && registerForm.get("email")?.touched) {
+                            @if (registerForm.get("email")?.getError("email")) {
+                            <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                Enter valid email
+                            </p>
+                            }
+                            @else if (registerForm.get("email")?.getError("required")) {
+                                <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                    email is required
+                                </p>
+                            }    
+                        }
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input formControlName="password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-600 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400" required="">
+                        @if (registerForm.get("password")?.errors && registerForm.get("password")?.touched) {
+                            @if (registerForm.get("password")?.getError("pattern")) {
+                            <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                Password must be at least 8 characters, with uppercase, lowercase, a number, and a special character (&#64;#$%^&*!)
+                            </p>
+                            }
+                            @else if (registerForm.get("password")?.getError("required")) {
+                                <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                    password is required
+                                </p>
+                            }    
+                        }
+                    </div>
+                    <div>
+                        <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                        <input formControlName="rePassword" type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-600 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400" required="">
+                            @if (registerForm.getError("mismatch")&&registerForm.get("rePassword")?.touched) {
+                            <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                confirm password is incorrect
+                            </p>
+                            }  
+                    </div>
+                    <div>
+                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">phone</label>
+                        <input formControlName="phone" type="tel" name="phone" id="confirm-password" placeholder="+20 121321233" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-600 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400" required="">
+                        @if (registerForm.get("phone")?.errors && registerForm.get("phone")?.touched) {
+                            @if (registerForm.get("phone")?.getError("pattern")) {
+                            <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                Enter valid phone number
+                            </p>
+                            }
+                            @else if (registerForm.get("phone")?.getError("required")) {
+                                <p class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 ">
+                                    phone number is required
+                                </p>
+                            }    
+                        }
+                    </div>
+                    <button type="submit" class="w-full btn-main text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-400">
+                        Create an account 
+                        @if (isLoading) {
+                            <span><i class="fas fa-spin fa-spinner"></i></span> 
+                        }
+                    </button>
+                    @if(msgError && !msgSuccess ){
+                    <p class="bg-red-200 text-red-600 py-3 px-4 rounded " > {{msgError}} </p>
+                    }
+                    @if(msgSuccess){
+                        <p class="bg-green-200 text-green-600 py-3 px-4 rounded " > Account created successfully </p>
+                    }
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        Already have an account? <a role="button" routerLink="/login" class="font-medium text-green-500 hover:underline dark:text-green-400">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

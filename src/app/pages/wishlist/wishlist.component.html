@@ -1,0 +1,29 @@
+<section>
+    <h2 class="text-3xl text-green-600 font-semibold" >Wishlist</h2>
+    <div class="row">
+            @for (product of products; track product._id) {
+            <div class="my-1 py-1 border-b flex flex-wrap justify-between items-center">
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="w-[150px] m-auto ">
+                        <img [src]="product.imageCover" alt="img" class="w-full">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p> {{product.title.split(" ",6).join(" ")}} </p>
+                        <p class="text-green-700">price : {{product.price}} EGP </p>
+                    </div>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <span (click)="removeProductFromWishlist(product._id)" role="button" class="flex items-center gap-2 border px-6 py-2 rounded border-green-600 text-green-700 hover:text-white hover:bg-green-600 transition-all duration-300"><i class="fa-solid fa-trash  "></i> <p>Remove</p></span>
+                    <button (click)="addToCart(product._id)" class="bg-green-600 transition-all duration-300 px-6 py-2 font-semibold text-white rounded hover:bg-green-700" >Add To Cart</button>
+                </div>
+            </div>
+            }
+            @empty {
+                <p class="text-green-500 text-center text-[40px]">Wishlist is Empty</p>
+            }
+
+    </div>
+
+
+    
+</section>
