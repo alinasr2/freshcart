@@ -1,9 +1,7 @@
 {
   "name": "ecommerce",
   "version": "0.0.0",
-  "scripts": {
-    "preinstall":"chmod +x",
-    
+  "scripts": {    
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
