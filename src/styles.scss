@@ -2,7 +2,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'ngx-toastr/toastr';
+/* @import 'ngx-toastr/toastr'; */
+@use 'ngx-toastr/toastr' as toastr;
 
 body{
     font-family: "Montserrat", serif;
